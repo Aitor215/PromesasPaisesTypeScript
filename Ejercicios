@@ -1,0 +1,56 @@
+//Funciones de las ramas
+// async function findPais(id){
+//         console.log('---------------------------------------')
+//         console.log('Llamada a la funcion FIND PAIS')
+//         console.log('--------------------------------------')
+//         try {
+//             const pais = await getPais(id)
+//             const region= await getRegion(id)
+//             console.log(pais, 'pais')
+//             console.log(region,'region')
+//             salida.textContent= `El pais buscado es:  ${pais} con la region : ${region}`
+//     } catch (error) {
+//             console.log(error, 'ERROR')
+//             salida.textContent=error
+//     }
+// }
+
+// function getPais(id) {
+//     let paises = ""
+//     getPais(id)
+//         .then((pais) => {
+//             console.log(pais, 'pais')
+//             paises = pais
+//             return getRegion(id)
+//         })
+//         .then((region) => {
+//             console.log(region, 'region')
+//             salida.textContent =  `El país buscado: ${paises} con la región ${region}`
+//         })
+//         .catch((error) => {
+//             console.log("PROMISE REJECT, PASO POR EL CATCH")
+//             console.error(error)
+//             salida.textContent =  error
+//         })
+// }
+
+// function findPais(id){
+//     console.log('---------------------------------------')
+//     console.log('Llamada a la funcion GET PAIS')
+//     console.log('--------------------------------------')
+//     Promise.all([getPais(id),getRegion(id)])
+//         .then(([country, region])=>{
+//             console.log('PROMISE RESOLVE, PASO POR EL THEN')
+//             console.log(pais,'pais')
+//             console.log(region,'region')
+
+//             const p = document.createElement('p')
+//             p.textContent = `El país buscado es ${pais} con la región: ${region}`
+//             salida.replaceChildren(p)
+//         })
+//         .catch((err)=>{
+//             console.log('PROMISE REJECT, PASO POR EL CATCH')
+//             console.log(err,'err')
+//             salida.textContent=err
+//         })
+// }
