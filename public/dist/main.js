@@ -36,17 +36,14 @@ function findPais(id) {
         salida.textContent = typeof err === 'string' ? err : 'Ocurrió un error';
     });
 }
-btn.addEventListener("click", () => {
-    console.log("----------------------------------------");
-    console.log("Llamada a la función ADD EVENT LISTENER");
-    console.log("----------------------------------------");
-    try {
-        const id = getIdFromButton();
-        if (id != undefined)
-            findPais(id);
-    }
-    catch (error) {
-        const message = error instanceof Error ? error.message : "Error inesperado";
-        salida.textContent = message;
-    }
-});
+if (btn) {
+    btn.addEventListener("click", () => {
+        try {
+            const id = getIdFromButton();
+            if (id !== undefined) findPais(id);
+        } catch (error) {
+            const message = error instanceof Error ? error.message : "Error inesperado";
+            if (salida) salida.textContent = message;
+        }
+    });
+}
