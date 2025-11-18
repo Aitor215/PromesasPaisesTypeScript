@@ -14,28 +14,21 @@ function getIdFromButton() {
     }
     return id;
 }
-function findPais(id) {
-    console.log('---------------------------------------');
-    console.log('Llamada a la función GET PAIS');
-    console.log('--------------------------------------');
-    const salida = document.getElementById('salida'); // Asegúrate que exista un elemento con id="salida"
-    if (!salida)
-        return; // Si no existe, salimos
-    Promise.all([getPais(id), getRegion(id)])
-        .then(([pais, region]) => {
-        console.log('PROMISE RESOLVE, PASO POR EL THEN');
-        console.log(pais, 'pais');
-        console.log(region, 'region');
-        const p = document.createElement('p');
-        p.textContent = `El país buscado es ${pais} con la región: ${region}`;
-        salida.replaceChildren(p);
-    })
-        .catch((err) => {
-        console.log('PROMISE REJECT, PASO POR EL CATCH');
-        console.error(err);
-        salida.textContent = typeof err === 'string' ? err : 'Ocurrió un error';
-    });
-}
+ async function findPais(id){
+         console.log('---------------------------------------')
+         console.log('Llamada a la funcion FIND PAIS')
+         console.log('--------------------------------------')
+         try {
+             const pais = await getPais(id)
+             const region= await getRegion(id)
+             console.log(pais, 'pais')
+             console.log(region,'region')
+             salida.textContent= `El pais buscado es:  ${pais} con la region : ${region}`
+     } catch (error) {
+             console.log(error, 'ERROR')
+             salida.textContent=error
+     }
+ }
 btn.addEventListener("click", () => {
     console.log("----------------------------------------");
     console.log("Llamada a la función ADD EVENT LISTENER");
