@@ -2,8 +2,8 @@ import { getPais } from "./services/getPaisService";
 import { getRegion } from "./services/getRegionServicio"
 
 
-const btn = document.getElementById("paisNumber") as HTMLButtonElement;
-const salida = document.getElementById("paises") as HTMLDivElement;
+const btn = document.getElementById("paisNumber") 
+const salida = document.getElementById("paises") 
 
 function getIdFromButton(): number |undefined {
     console.log("---------------------------------------");
@@ -23,7 +23,7 @@ function findPais(id: number): void {
     console.log('Llamada a la función GET PAIS');
     console.log('--------------------------------------');
 
-    const salida = document.getElementById('salida'); // Asegúrate que exista un elemento con id="salida"
+    const salida = document.getElementById('pais'); // Asegúrate que exista un elemento con id="salida"
     if (!salida) return; // Si no existe, salimos
 
     Promise.all([getPais(id), getRegion(id)])
@@ -42,16 +42,14 @@ function findPais(id: number): void {
             salida.textContent = typeof err === 'string' ? err : 'Ocurrió un error';
         });
 }
-btn.addEventListener("click", () =>{
-    console.log("----------------------------------------");
-    console.log("Llamada a la función ADD EVENT LISTENER");
-    console.log("----------------------------------------");
-
-    try {
-        const id = getIdFromButton();
-        if(id!= undefined) findPais(id);
-    } catch (error) {
-        const message = error instanceof Error ? error.message : "Error inesperado"
-        salida.textContent = message;
-    }
-});
+if (btn) {
+    btn.addEventListener("click", () => {
+        try {
+            const id = getIdFromButton();
+            if (id !== undefined) findPais(id);
+        } catch (error) {
+            const message = error instanceof Error ? error.message : "Error inesperado";
+            if (salida) salida.textContent = message;
+        }
+    });
+}
